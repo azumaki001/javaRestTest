@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" Content-Type="text/plain">
+    <head>
+        <!-- 1:dummy data,0:サーバーにアクセス -->
+        <input type="hidden" id="testFlag" value="0">
+
+            <!-- Required meta tags -->
+            <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+                    <!-- Optional JavaScript -->
+                    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+                    <!-- Bootstrap CSS -->
+                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+                        <style type="text/css">
+                            html {
+                                position: relative;
+                                min-height: 100%;
+                            }
+                        body {
+                            /* Margin bottom by footer height */
+                            margin-bottom: 120px;
+                        }
+                        .footer {
+                            position: fixed;
+                            bottom: 0;
+                            width: 100%;
+                            /* Set the fixed height of the footer here */
+                            height: 100px;
+                            background-color: #f5f5f5;
+                        }
+                        </style>
+
+                        <title>精算の巻</title>
+
+                        <script type="text/javascript">
+
+                            // 初期処理
+                            function initPage(){
+                                var userlist;
+                                var paylist;
+
+                                // サーバーにアクセスモードで
+                                var xmlhttp = new XMLHttpRequest();
+                                xmlhttp.responseType = "";
+                                var url = "http://localhost:8080/javaRestTest/rest/MindsCustomerInfoReception/MindsCustomerInfoReception/api/v2";
+                                //var url = "http://mytest:8080/javaRestTest/rest/MindsCustomerInfoReception/MindsCustomerInfoReception/api/v2";
+
+                                xmlhttp.onreadystatechange = function() {
+                                        if(this.readyState == 4 ){
+                                            if (this.status == 200) {
+                                                var tem1 = JSON.parse(this.responseText);
+                                                var temp1 = tem1["title"];
+                                                alert (temp1);
+
+                                                var tem2 = JSON.parse(this.responseText);
+                                                var temp2 = tem2["boday"];
+                                                alert (temp2);
+                                            } else {
+                                                alert("サーバーに接続失敗");
+                                                return;
+                                            }
+                                        }
+                                    };
+                                    xmlhttp.open("POST", url, false);
+                                    xmlhttp.send();
+                            }
+                        </script>
+                    </head>
+
+
+    <body onLoad="initPage()">
+        <!-- header. fix me,共通化 -->
+        <a>aaaaa</a>
+    </body>
+</html>
